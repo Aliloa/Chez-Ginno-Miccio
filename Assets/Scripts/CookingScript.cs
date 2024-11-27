@@ -24,6 +24,7 @@ public class CookingScript : MonoBehaviour
         Debug.Log("Pizza cuite !");
         dough.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         dough.GetComponent<Renderer>().material = CookedDoughMaterial;
+        dough.tag = "CookedDough";
         //isCooking = false; // Permet de relancer la cuisson si n�cessaire
     }
 

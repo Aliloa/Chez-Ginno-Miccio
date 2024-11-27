@@ -4,15 +4,63 @@ using UnityEngine;
 
 public class OrderScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private string order;
+    public bool hasOrder { get; private set; }
+
+    public void CreateOrder() {
+        if (!hasOrder)
+        {
+            // Generate a random order
+            string[] possibleOrders = { "Mushrooms Pizza", "Pepperoni Pizza" };
+            order = possibleOrders[Random.Range(0, possibleOrders.Length)];
+
+            // Mark that the client has an order
+            hasOrder = true;
+
+            Debug.Log("Can I get a uhhhh " + order);
+        }
+        else
+        {
+            // Repeat the same order
+            Debug.Log("I said I want a " + order);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CheckOrder(GameObject pizza)
     {
-        
+        if (pizza != null && pizza.CompareTag("CookedDough"))
+        {
+            // Récupérer tous les enfants de l'objet Dough
+            Transform doughTransform = pizza.transform;
+            List<string> ingredientsOnPizza = new List<string>();
+
+            foreach (Transform child in doughTransform)
+            {
+                ingredientsOnPizza.Add(child.tag); // Utilise les tags pour identifier les ingrédients
+            }
+
+            // Vérification de la commande
+            if (order == "Mushrooms Pizza" && ingredientsOnPizza.Contains("Mushroom") && !ingredientsOnPizza.Contains("Pepperoni"))
+            {
+                Debug.Log("Merci mon reuf");
+                hasOrder = false; // Réinitialiser la commande
+                Destroy(pizza.gameObject); // Détruire la pizza une fois livrée
+            }
+            else if (order == "Pepperoni Pizza" && ingredientsOnPizza.Contains("Pepperoni") && !ingredientsOnPizza.Contains("Mushroom"))
+            {
+                Debug.Log("Merci mon reuf");
+                hasOrder = false; // Réinitialiser la commande
+                Destroy(pizza.gameObject); // Détruire la pizza une fois livrée
+            }
+            else
+            {
+                Debug.Log("This is not what I ordered!");
+            }
+        }
+        else //-- Quand on donne juste un ingrédient seul ou une pizza pas cuite
+        {
+            Debug.Log("Euh tu joues à quoi"); // -- ca va jamais s'executer mais à voir peut être ça va servir
+        }
     }
+
 }
