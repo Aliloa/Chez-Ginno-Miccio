@@ -48,7 +48,12 @@ public class GrabableObjectScript : MonoBehaviour
                 childRigidbody.isKinematic = true; // Disable physics
                 childRigidbody.useGravity = false;
             }
-    }
+            Collider childCollider = child.GetComponent<Collider>(); //enlever le collider aussi sinon ça beug
+            if (childCollider != null)
+            {
+                childCollider.enabled = false;
+            }
+        }
     }
 
     public void Drop()
@@ -59,11 +64,16 @@ public class GrabableObjectScript : MonoBehaviour
         foreach (Transform child in this.transform)
         {
             Rigidbody childRigidbody = child.GetComponent<Rigidbody>();
-            if (childRigidbody == null)
+            if (childRigidbody != null)
             {
                 childRigidbody.WakeUp();
                 childRigidbody.isKinematic = false;
                 childRigidbody.useGravity = true;
+            }
+            Collider childCollider = child.GetComponent<Collider>();
+            if (childCollider != null)
+            {
+                childCollider.enabled = true;
             }
         }
     }

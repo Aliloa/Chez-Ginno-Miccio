@@ -4,5 +4,6 @@ Comme ça chaque script contient aussi leurs dialogue
 ---
 
 QUESTION A POSER:
-GRAB QUI BUG
+GRAB QUI BUG (corrigé)
+
 INPUT SYSTEM MESSAGE ERREUR BIZARRE
