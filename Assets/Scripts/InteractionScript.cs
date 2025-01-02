@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class PickupObjectScript : MonoBehaviour
+public class InteractionScript : MonoBehaviour
 {
     [SerializeField] private Transform playerCamera;
     [SerializeField] private LayerMask pickupLayerMask;
@@ -38,7 +39,7 @@ public class PickupObjectScript : MonoBehaviour
                     grabableObject.Drop();
                     grabableObject = null;
                 }
-            }
+        }
     }
     //    //------------------------------------------------------------- Interaction client
     private void OnTalk(InputAction.CallbackContext context)

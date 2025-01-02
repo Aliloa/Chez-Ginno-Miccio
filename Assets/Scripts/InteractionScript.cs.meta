@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7d89d75cc3f1f7841ba7de299121be2c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerCamera: {instanceID: 0}
+  - objectGrabPointTransform: {instanceID: 0}
+  - dot: {fileID: 2024566657728941758, guid: 09adabfc696bf0349ace934f4dc0dd83, type: 3}
+  - pressE: {fileID: 946067164924207738, guid: c08d1b8d275bfed4183d62026278f6c9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

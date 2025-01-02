@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cb6907c9aeabdf14a8a0752080e01863
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerCamera: {instanceID: 0}
+  - dot: {fileID: 4167681874306869645, guid: 09adabfc696bf0349ace934f4dc0dd83, type: 3}
+  - pressE: {fileID: 68382566538215642, guid: 00d34615da05e9a469d676d784e9ec9c, type: 3}
+  - pressF: {fileID: 68382566538215642, guid: f647acc85fb715a4ebee677d6aa8a70f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
