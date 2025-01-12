@@ -22,13 +22,22 @@ public class DialogueManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0)) {
+            if (dialogue.text == lines[index])
+            { 
+            NextLine();
+            } else
+            {
+                StopAllCoroutines();
+                dialogue.text = lines[index];
+            }
+        }
     }
 
     void StartDialogue()
     {
         index = 0;
-        startCouroutine(TypeLine());
+        StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine()
@@ -40,5 +49,18 @@ public class DialogueManagerScript : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
 
+    }
+
+    void NextLine()
+    {
+        if (index < lines.Length - 1)
+        {
+            index++;
+            dialogue.text = string.Empty;
+            StartCoroutine(TypeLine());
+        } else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
