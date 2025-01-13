@@ -12,30 +12,28 @@ public class DialogueManagerScript : MonoBehaviour
 
     private int index;
 
+    public bool isDialogueActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(false);
         dialogue.text = string.Empty;
-        StartDialogue();
+        //StartDialogue();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            if (dialogue.text == lines[index])
-            { 
-            NextLine();
-            } else
-            {
-                StopAllCoroutines();
-                dialogue.text = lines[index];
-            }
-        }
+
     }
 
-    void StartDialogue()
+    public void StartDialogue(string[] newLines)
     {
+        lines = newLines;
+        isDialogueActive = true;
+        dialogue.text = string.Empty;
+        gameObject.SetActive(true);
         index = 0;
         StartCoroutine(TypeLine());
     }
@@ -51,15 +49,22 @@ public class DialogueManagerScript : MonoBehaviour
 
     }
 
-    void NextLine()
+    public void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (dialogue.text != lines[index])
+        {
+            StopAllCoroutines();
+            dialogue.text = lines[index];
+        }
+        else if (index < lines.Length - 1)
         {
             index++;
             dialogue.text = string.Empty;
             StartCoroutine(TypeLine());
-        } else
+        }
+        else
         {
+            isDialogueActive = false;
             gameObject.SetActive(false);
         }
     }

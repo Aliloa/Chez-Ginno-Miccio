@@ -7,6 +7,14 @@ public class OrderScript : MonoBehaviour
     private string order;
     public bool hasOrder { get; private set; }
 
+    //private DialogueManagerScript dialogueManager;
+
+    [SerializeField] private GameObject dialogue;
+
+    private void Start()
+    {
+        //dialogueManager = FindObjectOfType<DialogueManagerScript>();
+    }
     public void CreateOrder() {
         if (!hasOrder)
         {
@@ -17,12 +25,17 @@ public class OrderScript : MonoBehaviour
             // Mark that the client has an order
             hasOrder = true;
 
-            Debug.Log("Can I get a uhhhh " + order);
+                string[] commande = { "Can I get a uhhhh " + order };
+            dialogue.GetComponent<DialogueManagerScript>().StartDialogue(commande);
+                return;
+            //Debug.Log("Can I get a uhhhh " + order);
         }
         else
         {
-            // Repeat the same order
-            Debug.Log("I said I want a " + order);
+                string[] repetCommande = { "I said I want a " + order };
+            dialogue.GetComponent<DialogueManagerScript>().StartDialogue(repetCommande);
+                return;
+            //Debug.Log("I said I want a " + order);
         }
     }
 

@@ -13,6 +13,7 @@ public class InteractionScript : MonoBehaviour
 
     private GrabableObjectScript grabableObject;
     private OrderScript client;
+    private DialogueManagerScript dialogueManager;
 
     private PlayerInput playerInput;
     private InputAction grabAction;
@@ -41,12 +42,20 @@ public class InteractionScript : MonoBehaviour
                 }
         }
     }
-    //    //------------------------------------------------------------- Interaction client
+    //    //------------------------------------------------------------- Interaction client et dialogue
+
     private void OnTalk(InputAction.CallbackContext context)
     {
         float interactDistance = 3f;
         LayerMask clientLayer = LayerMask.GetMask("Client");
         RaycastHit raycastHit;
+
+        dialogueManager = FindObjectOfType<DialogueManagerScript>();
+        if (dialogueManager != null && dialogueManager.isDialogueActive)
+        {
+            dialogueManager.NextLine();
+            return;
+        }
 
         // Effectuer le raycast pour vérifier la présence d'un client
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, clientLayer))
