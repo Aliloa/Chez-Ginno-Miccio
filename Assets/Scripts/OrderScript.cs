@@ -9,7 +9,8 @@ public class OrderScript : MonoBehaviour
 
     //private DialogueManagerScript dialogueManager;
 
-    [SerializeField] private GameObject dialogue;
+    [SerializeField] private GameObject dialogue; //objet sur lequel se trouve le script DialogueManager (ne pas mettre le prefab sinon ca marche pas
+    [SerializeField] private GameObject clientSpawner; //objet sur lequel se trouve le script clientSpawner
 
     private void Start()
     {
@@ -55,25 +56,47 @@ public class OrderScript : MonoBehaviour
             // Vérification de la commande
             if (order == "Mushrooms Pizza" && ingredientsOnPizza.Contains("Mushroom") && !ingredientsOnPizza.Contains("Pepperoni"))
             {
-                Debug.Log("Merci mon reuf");
+                string[] bonneCommande = { "Merci mon reuf" };
+                dialogue.GetComponent<DialogueManagerScript>().StartDialogue(bonneCommande);
                 hasOrder = false; // Réinitialiser la commande
                 Destroy(pizza.gameObject); // Détruire la pizza une fois livrée
+                //clientSpawner.GetComponent<ClientSpawnerScript>().OnOrderCompleted();
+                StartCoroutine(WaitForDialogueToComplete());
             }
             else if (order == "Pepperoni Pizza" && ingredientsOnPizza.Contains("Pepperoni") && !ingredientsOnPizza.Contains("Mushroom"))
             {
-                Debug.Log("Merci mon reuf");
+                //Debug.Log("Merci mon reuf");
+                string[] bonneCommande = { "Merci mon reuf" };
+                dialogue.GetComponent<DialogueManagerScript>().StartDialogue(bonneCommande);
                 hasOrder = false; // Réinitialiser la commande
                 Destroy(pizza.gameObject); // Détruire la pizza une fois livrée
+                //clientSpawner.GetComponent<ClientSpawnerScript>().OnOrderCompleted();
+                StartCoroutine(WaitForDialogueToComplete());
             }
             else
             {
-                Debug.Log("This is not what I ordered!");
+                //Debug.Log("This is not what I ordered!");
+                string[] mauvaiseCommande = { "This is not what I ordered!" };
+                dialogue.GetComponent<DialogueManagerScript>().StartDialogue(mauvaiseCommande);
+                return;
             }
         }
         else //-- Quand on donne juste un ingrédient seul ou une pizza pas cuite
         {
-            Debug.Log("Euh tu joues à quoi"); // -- ca va jamais s'executer mais à voir peut être ça va servir
+            //Debug.Log("Euh tu joues à quoi"); // -- ca va jamais s'executer mais à voir peut être ça va servir
+            string[] mauvaiseCommande = { "Euh tu joues à quoi" };
+            dialogue.GetComponent<DialogueManagerScript>().StartDialogue(mauvaiseCommande);
+            return;
         }
+    }
+
+    IEnumerator WaitForDialogueToComplete()
+    {
+        // Attendre que le dialogue soit terminé (tu devras adapter selon ton système de dialogue)
+        yield return new WaitUntil(() => !dialogue.GetComponent<DialogueManagerScript>().isDialogueActive);
+
+        // Une fois le dialogue terminé, appeler OnOrderCompleted()
+        clientSpawner.GetComponent<ClientSpawnerScript>().OnOrderCompleted();
     }
 
 }
