@@ -7,22 +7,21 @@ public class GrabableObjectScript : MonoBehaviour
     private Rigidbody objectRigidbody;
     private Transform objectGrabPointTransform;
 
-    [SerializeField] private GameObject dough;
     //private bool isTouchingDough = false;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == dough)
+        if (collision.gameObject.CompareTag("Dough"))
         {
             //isTouchingDough = true;
             Debug.Log("The object is touching the dough!");
-            this.transform.SetParent(dough.transform);
+            this.transform.SetParent(collision.gameObject.transform);
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject == dough)
+        if (collision.gameObject.CompareTag("Dough"))
         {
             //isTouchingDough = false;
             this.transform.SetParent(null);

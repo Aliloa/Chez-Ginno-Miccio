@@ -14,6 +14,7 @@ public class InteractionScript : MonoBehaviour
     private GrabableObjectScript grabableObject;
     private OrderScript client;
     private DialogueManagerScript dialogueManager;
+    private DoughSpawnerScript doughSpawner;
 
     private PlayerInput playerInput;
     private InputAction grabAction;
@@ -40,7 +41,11 @@ public class InteractionScript : MonoBehaviour
                     grabableObject.Drop();
                     grabableObject = null;
                 }
-        }
+                if (raycastHit.transform.TryGetComponent(out doughSpawner))
+            {
+                doughSpawner.SpawnDough();
+            }
+             }
     }
     //    //------------------------------------------------------------- Interaction client et dialogue
 

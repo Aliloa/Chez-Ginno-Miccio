@@ -9,22 +9,33 @@ public class CookingScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == dough)
+        if (collision.gameObject.CompareTag("Dough"))
         {
             //isTouchingDough = true;
             Debug.Log("Pizza en train de cuir");
-            StartCoroutine(CookPizza());
+            StartCoroutine(CookPizza(collision.gameObject));
         }
     }
-    private IEnumerator CookPizza() //IEnumerator fonction qui prend du temps � s'�xecuter sans bloquer les autres
+    private IEnumerator CookPizza(GameObject doughInstance) //IEnumerator fonction qui prend du temps � s'�xecuter sans bloquer les autres
     {
         //isCooking = true; // Emp�che de relancer la cuisson plusieurs fois
-        dough.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        Rigidbody rb = doughInstance.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePosition;
+        }
         yield return new WaitForSeconds(3); // Attend 3 secondes
         Debug.Log("Pizza cuite !");
-        dough.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        dough.GetComponent<Renderer>().material = CookedDoughMaterial;
-        dough.tag = "CookedDough";
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        Renderer renderer = doughInstance.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material = CookedDoughMaterial; // Change material to "cooked"
+        }
+        doughInstance.tag = "CookedDough";
         //isCooking = false; // Permet de relancer la cuisson si n�cessaire
     }
 
