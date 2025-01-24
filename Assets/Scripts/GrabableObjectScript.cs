@@ -33,7 +33,8 @@ public class GrabableObjectScript : MonoBehaviour
         objectRigidbody = GetComponent<Rigidbody>();
     }
 
-    public void Grab(Transform objectGrabPointTransform) {
+    public void Grab(Transform objectGrabPointTransform)
+    {
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidbody.useGravity = false;
         objectRigidbody.isKinematic = false;
@@ -88,4 +89,49 @@ public class GrabableObjectScript : MonoBehaviour
             //objectRigidbody.MovePosition(Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * lerpSpeed));
         }
     }
+
+    //private Transform originalParent;
+
+    //public void Grab(Transform grabPoint)
+    //{
+    //    originalParent = transform.parent;
+    //    if (GetComponent<Rigidbody>() != null)
+    //    {
+    //        GetComponent<Rigidbody>().useGravity = false;
+    //        GetComponent<Rigidbody>().isKinematic = true;
+    //    }
+    //    transform.SetParent(grabPoint);
+    //    transform.localPosition = Vector3.zero;
+    //    transform.localRotation = Quaternion.identity;
+    //}
+
+    //public void Drop()
+    //{
+    //    transform.SetParent(originalParent);
+    //    if (GetComponent<Rigidbody>() != null)
+    //    {
+    //        GetComponent<Rigidbody>().useGravity = true;
+    //        GetComponent<Rigidbody>().isKinematic = false;
+    //    }
+    //}
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Dough"))
+    //    {
+    //        this.transform.SetParent(collision.gameObject.transform);
+    //        //Vector3 globalScale = this.transform.lossyScale;
+    //        //this.transform.localScale = globalScale;
+    //        //this.transform.rotation = Quaternion.identity;
+    //    }
+    //}
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Dough"))
+    //    {
+    //        this.transform.SetParent(null);
+    //    }
+    //}
+
 }
