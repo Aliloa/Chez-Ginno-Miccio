@@ -28,7 +28,7 @@ public class CookingScript : MonoBehaviour
         Debug.Log("Pizza cuite !");
         if (rb != null)
         {
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.constraints = RigidbodyConstraints.FreezeRotation; //enlever la duplication
         }
         Renderer renderer = doughInstance.GetComponent<Renderer>();
         if (renderer != null)

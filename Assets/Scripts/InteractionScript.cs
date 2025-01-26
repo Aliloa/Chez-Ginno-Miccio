@@ -20,7 +20,7 @@ public class InteractionScript : MonoBehaviour
     private InputAction grabAction;
     private InputAction talkAction;
 
-    private void OnGrab(InputAction.CallbackContext context)
+    public void OnGrab(InputValue value)
     {
             RaycastHit raycastHit;
             float interactDistance = 2f;
@@ -49,7 +49,7 @@ public class InteractionScript : MonoBehaviour
     }
     //    //------------------------------------------------------------- Interaction client et dialogue
 
-    private void OnTalk(InputAction.CallbackContext context)
+    private void OnTalk(InputValue value)
     {
         float interactDistance = 3f;
         LayerMask clientLayer = LayerMask.GetMask("Client");
@@ -95,19 +95,5 @@ public class InteractionScript : MonoBehaviour
         // Récupérer l'action "Interact"
         grabAction = playerInput.actions["Grab"];
         talkAction = playerInput.actions["Talk"];
-    }
-
-    private void OnEnable()
-    {
-        // Activer l'écoute de l'action
-        grabAction.started += OnGrab;
-        talkAction.started += OnTalk;
-    }
-
-    private void OnDisable()
-    {
-        // Désactiver l'écoute de l'action
-        grabAction.started -= OnGrab;
-        talkAction.started -= OnTalk;
     }
 }
