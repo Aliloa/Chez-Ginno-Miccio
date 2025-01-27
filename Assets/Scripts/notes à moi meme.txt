@@ -1,10 +1,17 @@
---- Je pense que le mieux ce serait de mettre un script différent pour chaque perso, et leurs commandes je peux les randomiser. 
-Comme ça chaque script contient aussi leurs dialogue
+-Améliorer le système des scores avec des indications comme le nombre d'elements sur la pate, le temps, répartition d'ingredients sur la pate (Tout se passe dans CheckOrder qui est passé à ScoreManager)
+-Autoriser le joueur à se tromper comme ça des fois les commandes seront un peu ambigue comme dans bonne pizza super pizza ce qui va faire baisser le score
 
----
+-Ajouter peu etre un calcul de temps pour chaque pizza pour affiner le score (flemme)
+-Ajouter un temps global dans les journées qui va influencer le score (plus simple)
 
-QUESTION A POSER:
-GRAB QUI BUG (corrigé)
+-Ajouter le frommage et les sauces
 
-INPUT SYSTEM MESSAGE ERREUR BIZARRE
-QUAND JE FAIS RESPAWN LA PATE LES PEPPERONIS NE S'ATTACHENT PLUS CORRECTEMENT
+-Pizza brulé
+
+-Poubelle
+
+-Ecran START
+
+-Ajouter des boissons et des desserts (tt à la fin)
+
+----Priorité: Sur EndOfDayScreen ajouter un bouton pour passer au jour suivant

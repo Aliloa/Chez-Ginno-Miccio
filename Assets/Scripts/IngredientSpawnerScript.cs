@@ -45,8 +45,6 @@ public class IngredientSpawnerScript : MonoBehaviour
     // --------------------------Faire respawn les ingredients quand ils sortent du bol
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
-        Debug.Log(ingredient.name);
         if (other.gameObject.name.StartsWith(ingredient.name))
         {
             ingredientsInSpawner.Add(other.gameObject);

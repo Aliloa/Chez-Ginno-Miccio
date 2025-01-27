@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClientSpawnerScript : MonoBehaviour
 {
@@ -24,12 +25,6 @@ public class ClientSpawnerScript : MonoBehaviour
         SpawnNextClient();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void SpawnNextClient()
     {
         if (clientIndex < clientsInScene.Count)
@@ -43,8 +38,8 @@ public class ClientSpawnerScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Fin de la journée, tous les clients ont été servis !");
-            EndDay();
+            //DayManagerScript.Instance.EndDay();
+            ScoreManagerScript.Instance.EndDayScore();
         }
     }
 
@@ -66,8 +61,6 @@ public class ClientSpawnerScript : MonoBehaviour
             client.transform.position = Vector3.MoveTowards(client.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
-
-        Debug.Log("Client arrivé au magasin !");
         // Se tourner pour regarder vers le joueur
         Quaternion finalRotation = Quaternion.Euler(0, 180, 0); // Rotation autour de l'axe Y
         while (Quaternion.Angle(client.transform.rotation, finalRotation) > 0.1f)
@@ -75,7 +68,6 @@ public class ClientSpawnerScript : MonoBehaviour
             client.transform.rotation = Quaternion.Slerp(client.transform.rotation, finalRotation, rotationSpeed * Time.deltaTime);
             yield return null;
         }
-        // Le client est maintenant en place, prêt pour l'interaction
     }
 
     public void OnOrderCompleted()
@@ -105,11 +97,5 @@ public class ClientSpawnerScript : MonoBehaviour
         // Passer au client suivant
         clientIndex++;
         SpawnNextClient();
-    }
-
-    private void EndDay()
-    {
-        Debug.Log("Tous les clients ont été servis pour aujourd'hui !");
-        // Transition vers la journée suivante
     }
 }

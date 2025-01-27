@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OrderScript : MonoBehaviour
 {
     private string order;
+    List<string> orderIngredients = new List<string>();
     public bool hasOrder { get; private set; }
 
     //private DialogueManagerScript dialogueManager;
@@ -19,24 +21,37 @@ public class OrderScript : MonoBehaviour
     public void CreateOrder() {
         if (!hasOrder)
         {
-            // Generate a random order
-            string[] possibleOrders = { "Mushrooms Pizza", "Pepperoni Pizza" };
-            order = possibleOrders[Random.Range(0, possibleOrders.Length)];
+            // generer commande random
+            string[] possibleIngredients = { "Mushroom", "Pepperoni" };
+            //order = possibleOrders[Random.Range(0, possibleOrders.Length)];
 
-            // Mark that the client has an order
+            // Choisir aléatoirement si la pizza a 1 ou 2 ingrédients
+            int numberOfIngredients = Random.Range(1, 3); // 1 ou 2 ingrédients
+
+            while (orderIngredients.Count < numberOfIngredients)
+            {
+                string ingredient = possibleIngredients[Random.Range(0, possibleIngredients.Length)];
+
+                // S'assurer qu'on ne sélectionne pas le même ingrédient deux fois
+                if (!orderIngredients.Contains(ingredient))
+                {
+                    orderIngredients.Add(ingredient);
+                }
+            }
+
+            order = string.Join(" and ", orderIngredients);
+
             hasOrder = true;
 
-                string[] commande = { "Can I get a uhhhh " + order };
+                string[] commande = { "Can I get a uhhhh " + order + " pizza" };
             dialogue.GetComponent<DialogueManagerScript>().StartDialogue(commande);
                 return;
-            //Debug.Log("Can I get a uhhhh " + order);
         }
         else
         {
-                string[] repetCommande = { "I said I want a " + order };
+                string[] repetCommande = { "I said I want a " + order + "pizza" };
             dialogue.GetComponent<DialogueManagerScript>().StartDialogue(repetCommande);
                 return;
-            //Debug.Log("I said I want a " + order);
         }
     }
 
@@ -53,29 +68,31 @@ public class OrderScript : MonoBehaviour
                 ingredientsOnPizza.Add(child.tag); // Utilise les tags pour identifier les ingrédients
             }
 
-            // Vérification de la commande
-            if (order == "Mushrooms Pizza" && ingredientsOnPizza.Contains("Mushroom") && !ingredientsOnPizza.Contains("Pepperoni"))
+            bool orderIsCorrect = true;
+            foreach (string ingredient in orderIngredients)
             {
-                string[] bonneCommande = { "Merci mon reuf" };
-                dialogue.GetComponent<DialogueManagerScript>().StartDialogue(bonneCommande);
-                hasOrder = false; // Réinitialiser la commande
-                Destroy(pizza.gameObject); // Détruire la pizza une fois livrée
-                //clientSpawner.GetComponent<ClientSpawnerScript>().OnOrderCompleted();
-                StartCoroutine(WaitForDialogueToComplete());
+                if (!ingredientsOnPizza.Contains(ingredient))
+                {
+                    orderIsCorrect = false;
+                    break; // Si un ingrédient est manquant, on arrête la vérification
+                }
             }
-            else if (order == "Pepperoni Pizza" && ingredientsOnPizza.Contains("Pepperoni") && !ingredientsOnPizza.Contains("Mushroom"))
+
+            // Vérification de la commande
+            if (orderIsCorrect)
             {
-                //Debug.Log("Merci mon reuf");
                 string[] bonneCommande = { "Merci mon reuf" };
                 dialogue.GetComponent<DialogueManagerScript>().StartDialogue(bonneCommande);
                 hasOrder = false; // Réinitialiser la commande
                 Destroy(pizza.gameObject); // Détruire la pizza une fois livrée
-                //clientSpawner.GetComponent<ClientSpawnerScript>().OnOrderCompleted();
                 StartCoroutine(WaitForDialogueToComplete());
+
+                // Calcul du score : plus il y a d'ingrédients, plus le score est élevé
+                int scoreForPizza = ingredientsOnPizza.Count * 10; // Exemple : 10 points par ingrédient
+                ScoreManagerScript.Instance.AddPoints(scoreForPizza); // Ajouter des points au score du jour
             }
             else
             {
-                //Debug.Log("This is not what I ordered!");
                 string[] mauvaiseCommande = { "This is not what I ordered!" };
                 dialogue.GetComponent<DialogueManagerScript>().StartDialogue(mauvaiseCommande);
                 return;
@@ -83,7 +100,7 @@ public class OrderScript : MonoBehaviour
         }
         else //-- Quand on donne juste un ingrédient seul ou une pizza pas cuite
         {
-            //Debug.Log("Euh tu joues à quoi"); // -- ca va jamais s'executer mais à voir peut être ça va servir
+            // -- ca va jamais s'executer mais à voir peut être ça va servir
             string[] mauvaiseCommande = { "Euh tu joues à quoi" };
             dialogue.GetComponent<DialogueManagerScript>().StartDialogue(mauvaiseCommande);
             return;
@@ -92,7 +109,7 @@ public class OrderScript : MonoBehaviour
 
     IEnumerator WaitForDialogueToComplete()
     {
-        // Attendre que le dialogue soit terminé (tu devras adapter selon ton système de dialogue)
+        // Attendre que le dialogue soit terminé
         yield return new WaitUntil(() => !dialogue.GetComponent<DialogueManagerScript>().isDialogueActive);
 
         // Une fois le dialogue terminé, appeler OnOrderCompleted()
