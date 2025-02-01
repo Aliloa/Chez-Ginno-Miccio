@@ -15,6 +15,7 @@ public class InteractionScript : MonoBehaviour
     private OrderScript client;
     private DialogueManagerScript dialogueManager;
     private DoughSpawnerScript doughSpawner;
+    private GrabableSauceScript grabableSauce;
 
     private PlayerInput playerInput;
     private InputAction grabAction;
@@ -24,7 +25,7 @@ public class InteractionScript : MonoBehaviour
     {
             RaycastHit raycastHit;
             float interactDistance = 2f;
-            LayerMask ingredientLayer = LayerMask.GetMask("Ingredient");
+            LayerMask ingredientLayer = LayerMask.GetMask("Ingredients", "Default");
 
             // Attrapper et lacher les objets
             if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, ingredientLayer))
@@ -35,7 +36,12 @@ public class InteractionScript : MonoBehaviour
                     {
                         grabableObject.Grab(objectGrabPointTransform);
                     }
+                if (raycastHit.transform.TryGetComponent(out grabableSauce))
+                {
+                    grabableSauce.Grab(objectGrabPointTransform);
+                    grabableObject = grabableSauce;  // On attribue le script de sauce à la variable pour qu'on puisse la lâcher plus tard
                 }
+            }
                 else
                 {
                     grabableObject.Drop();

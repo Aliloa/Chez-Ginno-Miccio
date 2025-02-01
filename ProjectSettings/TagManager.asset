@@ -9,6 +9,7 @@ TagManager:
   - Pepperoni
   - CookedDough
   - Mushroom
+  - Bottle
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Ingredient
+  - Ingredients
   - Client
   - 
   - 
