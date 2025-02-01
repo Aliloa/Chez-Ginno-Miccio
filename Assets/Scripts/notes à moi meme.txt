@@ -14,4 +14,4 @@
 
 -Ajouter des boissons et des desserts (tt à la fin)
 
-----Priorité: Sur EndOfDayScreen ajouter un bouton pour passer au jour suivant
+----Priorité: Sur EndOfDayScreen ajouter un bouton pour passer au jour suivant (fait)

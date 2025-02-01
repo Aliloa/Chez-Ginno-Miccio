@@ -38,16 +38,4 @@ public class CookingScript : MonoBehaviour
         doughInstance.tag = "CookedDough";
         //isCooking = false; // Permet de relancer la cuisson si n�cessaire
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
