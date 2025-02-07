@@ -25,12 +25,12 @@ public class InteractionScript : MonoBehaviour
     {
             RaycastHit raycastHit;
             float interactDistance = 2f;
-            LayerMask ingredientLayer = LayerMask.GetMask("Ingredients", "Default");
+            LayerMask ingredientLayer = LayerMask.GetMask("Ingredients");
 
             // Attrapper et lacher les objets
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, ingredientLayer))
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
             {
-                if (grabableObject == null)
+            if (grabableObject == null)
                 {
                     if (raycastHit.transform.TryGetComponent(out grabableObject))
                     {

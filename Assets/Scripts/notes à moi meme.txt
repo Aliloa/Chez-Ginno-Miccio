@@ -18,6 +18,8 @@
 
 -Ajouter des boissons et des desserts (tt à la fin)
 
+-Changer la touche E en click and drag?
+
 ----Priorité: Sur EndOfDayScreen ajouter un bouton pour passer au jour suivant (fait)
 
 PROBLEME:
