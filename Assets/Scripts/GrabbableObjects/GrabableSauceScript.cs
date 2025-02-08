@@ -10,7 +10,6 @@ public class GrabableSauceScript : GrabableObjectScript
         base.Grab(grabPoint);  // Appeler la méthode de la classe parente pour ramasser l'objet
         sauceParticles.Play();
     }
-
     public override void Drop()
     {
         base.Drop();  // Appeler la méthode de la classe parente pour lâcher l'objet
