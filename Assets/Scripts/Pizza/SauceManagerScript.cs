@@ -9,25 +9,28 @@ public class SauceManagerScript : MonoBehaviour
     public float growSpeed = 0.1f; // Vitesse d'expansion de la sauce
 
     private Vector3 initialScale;
-    private bool isActive = false;
-
-    [SerializeField] private GameObject sauce;
+    GameObject sauce = null;
 
     void OnParticleCollision(GameObject other)
     {
-        if (sauce == null) return;
+        string particleTag = other.tag; // Récupère le tag du système de particules
 
-        if (!isActive)
+        foreach (Transform child in transform) // Récupérer le child sauce dans dough
         {
-            isActive = true;
-            sauce.transform.localScale = Vector3.one * 0.01f; // Rend la sauce visible avec une petite taille au début
-            sauce.SetActive(true);
+            if (child.CompareTag(particleTag))
+            {
+                sauce = child.gameObject;
+                break;
+            }
         }
 
-        // Faire grandir la sauce progressivement
-        if (sauce.transform.localScale.x < maxSize)
+        if (sauce != null && sauce.transform.localScale.x < maxSize)  // Faire grossir la sauce
         {
             sauce.transform.localScale += Vector3.one * growSpeed * Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("Aucun enfant trouvé avec le tag : " + particleTag);
         }
     }
 }

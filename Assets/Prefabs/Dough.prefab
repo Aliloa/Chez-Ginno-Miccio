@@ -163,7 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSize: 0.1
   growSpeed: 0.08
-  sauce: {fileID: 4178011405622561059}
 --- !u!1 &4178011405622561059
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,11 +176,11 @@ GameObject:
   - component: {fileID: 3091801019688742712}
   m_Layer: 6
   m_Name: Sauce
-  m_TagString: Untagged
+  m_TagString: TomatoSauce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7178886923599997690
 Transform:
   m_ObjectHideFlags: 0
@@ -192,7 +191,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.52, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4413971066396906820}
