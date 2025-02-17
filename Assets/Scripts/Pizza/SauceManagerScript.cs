@@ -24,13 +24,17 @@ public class SauceManagerScript : MonoBehaviour
             }
         }
 
-        if (sauce != null && sauce.transform.localScale.x < maxSize)  // Faire grossir la sauce
+        if (sauce != null && sauce.CompareTag(particleTag))
         {
-            sauce.transform.localScale += Vector3.one * growSpeed * Time.deltaTime;
+            if (sauce.transform.localScale.x < maxSize)  // Faire grossir la sauce
+            {
+                sauce.transform.localScale += Vector3.one * growSpeed * Time.deltaTime;
+            }
         }
         else
         {
             Debug.Log("Aucun enfant trouvé avec le tag : " + particleTag);
         }
+
     }
 }

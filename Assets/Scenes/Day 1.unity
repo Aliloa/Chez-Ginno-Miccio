@@ -1636,6 +1636,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3879144437200453506, guid: d3cb04d8f45ad3f4b8fee5d67cb3c423,
         type: 3}
+    - target: {fileID: 1624908412026172976, guid: 338269312cfa36245ba880a576983b77,
+        type: 3}
+      propertyPath: BurntDoughMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ed810a3297e56a499a3ae00c88aef1a, type: 2}
+    - target: {fileID: 1624908412026172976, guid: 338269312cfa36245ba880a576983b77,
+        type: 3}
+      propertyPath: BurnedDoughMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ed810a3297e56a499a3ae00c88aef1a, type: 2}
     - target: {fileID: 2631941014916255011, guid: 338269312cfa36245ba880a576983b77,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2821,7 +2831,7 @@ GameObject:
   - component: {fileID: 1622620363}
   m_Layer: 0
   m_Name: Cheese Particles
-  m_TagString: Untagged
+  m_TagString: Cheese
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

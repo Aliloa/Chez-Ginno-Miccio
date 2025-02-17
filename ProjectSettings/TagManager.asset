@@ -10,6 +10,9 @@ TagManager:
   - CookedDough
   - Mushroom
   - TomatoSauce
+  - Bottle
+  - Cheese
+  - BurntDough
   layers:
   - Default
   - TransparentFX
