@@ -5,7 +5,7 @@
 -Ajouter un calcul de temps pour chaque pizza pour affiner le score (flemme)
 -Ajouter un temps global dans les journées qui va influencer le score (plus simple)
 
--Pizza brulé
+-CheckOrder verif sauce, fromage et pate
 
 -Poubelle
 
@@ -27,3 +27,4 @@
 -Sur EndOfDayScreen ajouter un bouton pour passer au jour suivant (fait)
 -Ajouter frommage (fait)
 -Ajouter sauces (fait)
+-Pizza brulé (fait)

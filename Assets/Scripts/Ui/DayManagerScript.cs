@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class DayManagerScript : MonoBehaviour
 {
     public static DayManagerScript Instance;
-    public int currentDay = 1;
+    public int currentDay = 0;
 
     private void Awake()
     {
