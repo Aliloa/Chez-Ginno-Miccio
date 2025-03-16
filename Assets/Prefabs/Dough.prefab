@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSize: 0.1
-  growSpeed: 0.08
+  growSpeed: 0.1
 --- !u!1 &4178011405622561059
 GameObject:
   m_ObjectHideFlags: 0
