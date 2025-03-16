@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class EndOfDayScreenScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    public GameObject player;
+    [SerializeField] private GameObject player;
 
     void Start()
     {
