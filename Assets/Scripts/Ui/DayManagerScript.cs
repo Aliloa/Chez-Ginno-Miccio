@@ -10,7 +10,7 @@ public class DayManagerScript : MonoBehaviour
 
     private void Awake()
     {
-        // Créer une instance unique qui persiste entre les scènes
+        // Create a single instance that persists between scenes
         if (Instance == null)
         {
             Instance = this;
@@ -24,13 +24,10 @@ public class DayManagerScript : MonoBehaviour
 
     public void EndDay()
     {
-        Debug.Log("Fin du jour " + currentDay);
-
-        // Incrémenter le jour
         currentDay++;
 
-        // Charger la scène du jour suivant
-        string nextSceneName = "Day " + currentDay; // Nom de la prochaine scène, ex. : "Day 2"
+        // Change scenes for the next day
+        string nextSceneName = "Day " + currentDay; // Name of the scene
         if (Application.CanStreamedLevelBeLoaded(nextSceneName))
         {
             SceneManager.LoadScene(nextSceneName);

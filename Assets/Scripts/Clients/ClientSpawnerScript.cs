@@ -9,8 +9,8 @@ public class ClientSpawnerScript : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform stopPoint;
     [SerializeField] private Transform exitPoint;
-    public float moveSpeed = 2f;
-    public float rotationSpeed = 2f;
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float rotationSpeed = 2f;
 
     private int clientIndex = 0;
     private GameObject currentClient;
@@ -50,9 +50,9 @@ public class ClientSpawnerScript : MonoBehaviour
 
         while (Vector3.Distance(client.transform.position, targetPosition) > 0.1f)
         {
-            // Calculer la direction du mouvement
+            // Calculate the direction of movement
             Vector3 direction = (targetPosition - client.transform.position).normalized;
-            // Ajuster la rotation du client pour qu'il regarde dans la direction du mouvement
+            // Adjust the client's rotation so that they are looking in the direction of movement
             if (direction != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -61,8 +61,8 @@ public class ClientSpawnerScript : MonoBehaviour
             client.transform.position = Vector3.MoveTowards(client.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
-        // Se tourner pour regarder vers le joueur
-        Quaternion finalRotation = Quaternion.Euler(0, 180, 0); // Rotation autour de l'axe Y
+        // Turn to look towards the player
+        Quaternion finalRotation = Quaternion.Euler(0, 180, 0); // Rotation around the Y axis
         while (Quaternion.Angle(client.transform.rotation, finalRotation) > 0.1f)
         {
             client.transform.rotation = Quaternion.Slerp(client.transform.rotation, finalRotation, rotationSpeed * Time.deltaTime);
@@ -91,10 +91,10 @@ public class ClientSpawnerScript : MonoBehaviour
             yield return null;
         }
 
-        // Détruire le client une fois qu'il a quitté la scène
+        // Destroy the client once he has left the scene
         Destroy(client);
 
-        // Passer au client suivant
+        // Next client
         clientIndex++;
         SpawnNextClient();
     }
