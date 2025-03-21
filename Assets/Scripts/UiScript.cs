@@ -14,7 +14,7 @@ public class UiScript : MonoBehaviour
     [SerializeField] private Image dot;
     [SerializeField] private TextMeshProUGUI pressE;
     [SerializeField] private TextMeshProUGUI pressF;
-    // Start is called before the first frame update
+
     void Start()
     {
         pressE.enabled = false;

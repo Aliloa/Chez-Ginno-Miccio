@@ -14,7 +14,7 @@ public class ScoreManagerScript : MonoBehaviour
 
     private void Awake()
     {
-        // Créer une instance unique qui persiste entre les scènes
+        // Create a single instance that persists between scenes
         if (Instance == null)
         {
             Instance = this;
@@ -32,7 +32,7 @@ public class ScoreManagerScript : MonoBehaviour
     }
     public void EndDayScore()
     {
-        // Ajouter le score du jour à la liste des scores
+        // Add today's score to the score list
         dailyScores.Add(dailyScore);
         for (int i = 0; i < dailyScores.Count; i++)
         {
@@ -40,11 +40,11 @@ public class ScoreManagerScript : MonoBehaviour
         }
         endOfDayScreen.GetComponent<EndOfDayScreenScript>().ShowEndOfDayScreen(dailyScore);
 
-        dailyScore = 0; // Réinitialiser le score du jour pour le prochain jour
+        dailyScore = 0; // Reset today's score for the next day
     }
 
     public int GetScoreForDay(int day)
     {
-       return dailyScores[day - 1]; // Retourne le score du jour demandé (1 = Jour 1)
+       return dailyScores[day - 1]; // Returns the score of the requested day
     }
 }

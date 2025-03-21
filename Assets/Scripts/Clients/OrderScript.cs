@@ -11,8 +11,8 @@ public class OrderScript : MonoBehaviour
 
     //private DialogueManagerScript dialogueManager;
 
-    [SerializeField] private GameObject dialogue; //objet sur lequel se trouve le script DialogueManager (ne pas mettre le prefab sinon ca marche pas
-    [SerializeField] private GameObject clientSpawner; //objet sur lequel se trouve le script clientSpawner
+    [SerializeField] private GameObject dialogue; //object with the DialogueManager script (do not put the prefab otherwise it will not work)
+    [SerializeField] private GameObject clientSpawner; //Object with the script clientSpawner
 
     private void Start()
     {
@@ -21,18 +21,18 @@ public class OrderScript : MonoBehaviour
     public void CreateOrder() {
         if (!hasOrder)
         {
-            // generer commande random
+            // Generate random order
             string[] possibleIngredients = { "Mushroom", "Pepperoni" };
             //order = possibleOrders[Random.Range(0, possibleOrders.Length)];
 
-            // Choisir aléatoirement si la pizza a 1 ou 2 ingrédients
-            int numberOfIngredients = Random.Range(1, 3); // 1 ou 2 ingrédients
+            // Randomly choose whether the pizza has 1 or 2 ingredients
+            int numberOfIngredients = Random.Range(1, 3);
 
             while (orderIngredients.Count < numberOfIngredients)
             {
                 string ingredient = possibleIngredients[Random.Range(0, possibleIngredients.Length)];
 
-                // S'assurer qu'on ne sélectionne pas le même ingrédient deux fois
+                // Making sure to not select the same ingredient twice
                 if (!orderIngredients.Contains(ingredient))
                 {
                     orderIngredients.Add(ingredient);
@@ -59,13 +59,13 @@ public class OrderScript : MonoBehaviour
     {
         if (pizza != null && pizza.CompareTag("CookedDough"))
         {
-            // Récupérer tous les enfants de l'objet Dough
+            // Retrieve all children of the Dough object
             Transform doughTransform = pizza.transform;
             List<string> ingredientsOnPizza = new List<string>();
 
             foreach (Transform child in doughTransform)
             {
-                ingredientsOnPizza.Add(child.tag); // Utilise les tags pour identifier les ingrédients
+                ingredientsOnPizza.Add(child.tag); // Use tags to identify ingredients
             }
 
             bool orderIsCorrect = true;
@@ -74,22 +74,22 @@ public class OrderScript : MonoBehaviour
                 if (!ingredientsOnPizza.Contains(ingredient))
                 {
                     orderIsCorrect = false;
-                    break; // Si un ingrédient est manquant, on arrête la vérification
+                    break; // If an ingredient is missing, the check is stopped
                 }
             }
 
-            // Vérification de la commande
+            // Check the order
             if (orderIsCorrect)
             {
                 string[] bonneCommande = { "Merci mon reuf" };
                 dialogue.GetComponent<DialogueManagerScript>().StartDialogue(bonneCommande);
-                hasOrder = false; // Réinitialiser la commande
-                Destroy(pizza.gameObject); // Détruire la pizza une fois livrée
+                hasOrder = false; // Reset order
+                Destroy(pizza.gameObject); // Destroy the pizza once delivered
                 StartCoroutine(WaitForDialogueToComplete());
 
-                // Calcul du score : plus il y a d'ingrédients, plus le score est élevé
-                int scoreForPizza = ingredientsOnPizza.Count * 10; // Exemple : 10 points par ingrédient
-                ScoreManagerScript.Instance.AddPoints(scoreForPizza); // Ajouter des points au score du jour
+                //Calculating the score: the more ingredients there are, the higher the score
+                int scoreForPizza = ingredientsOnPizza.Count * 10; // + 10 points per ingredient
+                ScoreManagerScript.Instance.AddPoints(scoreForPizza); // Add points to today's score
             }
             else
             {
@@ -98,9 +98,9 @@ public class OrderScript : MonoBehaviour
                 return;
             }
         }
-        else //-- Quand on donne juste un ingrédient seul ou une pizza pas cuite
+        else //--When there is a single ingredient or an uncooked pizza
         {
-            // -- ca va jamais s'executer mais à voir peut être ça va servir
+            // -- It will never happen, but we'll see, maybe it will be useful...
             string[] mauvaiseCommande = { "Euh tu joues à quoi" };
             dialogue.GetComponent<DialogueManagerScript>().StartDialogue(mauvaiseCommande);
             return;
@@ -109,10 +109,10 @@ public class OrderScript : MonoBehaviour
 
     IEnumerator WaitForDialogueToComplete()
     {
-        // Attendre que le dialogue soit terminé
+        // Wait until the dialogue is finished
         yield return new WaitUntil(() => !dialogue.GetComponent<DialogueManagerScript>().isDialogueActive);
 
-        // Une fois le dialogue terminé, appeler OnOrderCompleted()
+        // Once the dialog is complete, call OnOrderCompleted()
         clientSpawner.GetComponent<ClientSpawnerScript>().OnOrderCompleted();
     }
 

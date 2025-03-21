@@ -10,16 +10,9 @@ public class DoughSpawnerScript : MonoBehaviour
 
     private GameObject currentDough;
 
-    // Start is called before the first frame update
     void Start()
     {
         SpawnDough();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void SpawnDough()

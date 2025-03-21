@@ -5,8 +5,8 @@ using UnityEngine;
 public class CookingScript : MonoBehaviour
 {
     [SerializeField] private GameObject dough;
-    [SerializeField] private Material CookedDoughMaterial;
-    [SerializeField] private Material BurntDoughMaterial;
+    [SerializeField] private Material cookedDoughMaterial;
+    [SerializeField] private Material burntDoughMaterial;
 
     private bool isCooking = false;
 
@@ -34,25 +34,24 @@ public class CookingScript : MonoBehaviour
             Debug.Log("Pizza sortie du four !");
         }
     }
-    private IEnumerator CookPizza(GameObject doughInstance) //IEnumerator fonction qui prend du temps � s'�xecuter sans bloquer les autres
+    private IEnumerator CookPizza(GameObject doughInstance) //IEnumerator function that takes time to execute without blocking others
     {
-        //isCooking = true; // Emp�che de relancer la cuisson plusieurs fois
         Rigidbody rb = doughInstance.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.FreezePosition;
         }
 
-        yield return new WaitForSeconds(3); // Attend 3 secondes
+        yield return new WaitForSeconds(3); // Wait 3 seconds
         Debug.Log("Pizza cuite !");
         if (rb != null)
         {
-            rb.constraints = RigidbodyConstraints.FreezeRotation; //enlever la duplication
+            rb.constraints = RigidbodyConstraints.FreezeRotation; //Remove duplication
         }
         Renderer renderer = doughInstance.GetComponent<Renderer>();
         if (renderer != null)
         {
-            renderer.material = CookedDoughMaterial; // Change material to "cooked"
+            renderer.material = cookedDoughMaterial; // Change material to "cooked"
         }
         doughInstance.tag = "CookedDough";
 
@@ -61,7 +60,7 @@ public class CookingScript : MonoBehaviour
 
     private IEnumerator BurnPizza(GameObject doughInstance)
     {
-        yield return new WaitForSeconds(5); // Attend 5 secondes après la cuisson
+        yield return new WaitForSeconds(5); // Wait 5 seconds
 
         if (isCooking)
         {
@@ -69,7 +68,7 @@ public class CookingScript : MonoBehaviour
             Renderer renderer = doughInstance.GetComponent<Renderer>();
             if (renderer != null)
             {
-                renderer.material = BurntDoughMaterial;
+                renderer.material = burntDoughMaterial;
             }
             doughInstance.tag = "BurntDough";
         }

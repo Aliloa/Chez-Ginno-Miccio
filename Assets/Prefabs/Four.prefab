@@ -150,5 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b77b68b58686946a22a057748ca27d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dough: {fileID: 0}
-  CookedDoughMaterial: {fileID: 2100000, guid: 9c3372c63f8307f46bac65d1dfcb19a5, type: 2}
+  dough: {fileID: 3879144437200453506, guid: d3cb04d8f45ad3f4b8fee5d67cb3c423, type: 3}
+  cookedDoughMaterial: {fileID: 2100000, guid: 9c3372c63f8307f46bac65d1dfcb19a5, type: 2}
+  burntDoughMaterial: {fileID: 2100000, guid: 5ed810a3297e56a499a3ae00c88aef1a, type: 2}

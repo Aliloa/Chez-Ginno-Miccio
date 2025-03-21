@@ -21,7 +21,7 @@ public class IngredientSpawnerScript : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnIngredientsOverTime() // Mettre une intervale entre chaque spawn pour pas que ça explose au début
+    private IEnumerator SpawnIngredientsOverTime() // Put an interval between each spawn so that it doesn't explode at the beginning
     {
         float spawnInterval = 0.05f;
         while (ingredientsInSpawner.Count < maxIngredients)
@@ -32,7 +32,7 @@ public class IngredientSpawnerScript : MonoBehaviour
     }
 
     private void SpawnIngredient()
-    {// Mettre aussi une distance entre chaque spawn pour pas que ça explose
+    {// Also put a distance between each spawn so that it doesn't explode
         Vector3 offset = new Vector3(
     Random.Range(-0.05f, 0.05f),
     0,
@@ -42,7 +42,7 @@ public class IngredientSpawnerScript : MonoBehaviour
         GameObject newingredient = Instantiate(ingredient, spawnPosition, Quaternion.identity);
     }
 
-    // --------------------------Faire respawn les ingredients quand ils sortent du bol
+    // Respawn ingredients when there's not enough
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.StartsWith(ingredient.name))

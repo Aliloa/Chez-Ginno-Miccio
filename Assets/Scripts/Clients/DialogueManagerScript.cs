@@ -8,7 +8,7 @@ public class DialogueManagerScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI dialogue;
     [SerializeField] private string[] lines;
-    public float textSpeed;
+    [SerializeField] private float textSpeed;
 
     private int index;
 
@@ -20,12 +20,6 @@ public class DialogueManagerScript : MonoBehaviour
         gameObject.SetActive(false);
         dialogue.text = string.Empty;
         //StartDialogue();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void StartDialogue(string[] newLines)
@@ -40,7 +34,7 @@ public class DialogueManagerScript : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        //Animation texte
+        //Animate the text
         foreach (char c in lines[index].ToCharArray())
         {
             dialogue.text += c;

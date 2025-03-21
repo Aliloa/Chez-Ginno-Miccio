@@ -28,8 +28,8 @@ public class InteractionScript : MonoBehaviour
             float interactDistance = 2f;
             LayerMask ingredientLayer = LayerMask.GetMask(INGREDIENTS_LAYER);
 
-            // Attrapper et lacher les objets
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+        // Catching and dropping objects
+        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
             {
             if (grabableObject == null)
                 {
@@ -40,7 +40,7 @@ public class InteractionScript : MonoBehaviour
                 if (raycastHit.transform.TryGetComponent(out grabableSauce))
                 {
                     grabableSauce.Grab(objectGrabPointTransform);
-                    grabableObject = grabableSauce;  // On attribue le script de sauce à la variable pour qu'on puisse la lâcher plus tard
+                    grabableObject = grabableSauce;  // We assign the sauce script to the variable so that we can drop it later
                 }
             }
                 else
@@ -54,7 +54,7 @@ public class InteractionScript : MonoBehaviour
             }
              }
     }
-    //    //------------------------------------------------------------- Interaction client et dialogue
+    //Customer interaction and dialogue
 
     private void OnTalk(InputValue value)
     {
@@ -69,25 +69,25 @@ public class InteractionScript : MonoBehaviour
             return;
         }
 
-        // Effectuer le raycast pour vérifier la présence d'un client
+        // Raycast to check for client presence
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, clientLayer))
         {
-            // Vérifier si l'objet touché est un client
+            // Check if the touched object is a customer
             if (raycastHit.transform.TryGetComponent(out client))
             {
                 if (!client.hasOrder)
                 {
-                    // Le client n'a pas encore commandé
+                    // The customer has not yet ordered
                     client.CreateOrder();
                 }
                 else if (grabableObject != null && grabableObject.CompareTag("CookedDough"))
                 {
-                    // Vérifie si on a un objet "CookedDough" dans les mains
+                    // Check if you have a "CookedDough" object in your hands
                     client.CheckOrder(grabableObject.gameObject);
                 }
                 else
                 {
-                    // Le client répète sa commande
+                    // The customer repeats his order
                     client.CreateOrder();
                 }
             }
@@ -96,10 +96,10 @@ public class InteractionScript : MonoBehaviour
 
     private void Awake()
     {
-        // Récupérer le PlayerInput attaché au GameObject
+        //Get the PlayerInput attached to the GameObject
         playerInput = GetComponent<PlayerInput>();
 
-        // Récupérer l'action "Interact"
+        // Get "Interact" action
         grabAction = playerInput.actions["Grab"];
         talkAction = playerInput.actions["Talk"];
     }

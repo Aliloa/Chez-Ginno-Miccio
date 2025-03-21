@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class EndOfDayScreenScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    public GameObject player;
+    [SerializeField] private GameObject player;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class EndOfDayScreenScript : MonoBehaviour
     public void ShowEndOfDayScreen(int score)
     {
         scoreText.text = "Score du jour : " + score;
-        gameObject.SetActive(true); // Afficher l'écran de fin de journée
+        gameObject.SetActive(true); // Show end of day screen
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -29,11 +29,10 @@ public class EndOfDayScreenScript : MonoBehaviour
     {
         DayManagerScript.Instance.EndDay();
 
-        // Réactiver le curseur verrouillé
+        // Reactivate the locked cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Désactiver l'écran de fin de journée
         gameObject.SetActive(false);
 
         player.GetComponent<FirstPersonController>().enabled = true;

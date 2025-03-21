@@ -5,17 +5,17 @@ using UnityEngine;
 public class SauceManagerScript : MonoBehaviour
 {
 
-    public float maxSize = 0.1f; // Taille max de la sauce
-    public float growSpeed = 0.1f; // Vitesse d'expansion de la sauce
+    [SerializeField] private float maxSize = 0.1f;
+    [SerializeField] private float growSpeed = 0.1f; // Sauce expansion speed
 
     private Vector3 initialScale;
     GameObject sauce = null;
 
     void OnParticleCollision(GameObject other)
     {
-        string particleTag = other.tag; // Récupère le tag du système de particules
+        string particleTag = other.tag; // Particles system tag
 
-        foreach (Transform child in transform) // Récupérer le child sauce dans dough
+        foreach (Transform child in transform) // Get the child sauce from dough
         {
             if (child.CompareTag(particleTag))
             {
@@ -26,7 +26,7 @@ public class SauceManagerScript : MonoBehaviour
 
         if (sauce != null && sauce.CompareTag(particleTag))
         {
-            if (sauce.transform.localScale.x < maxSize)  // Faire grossir la sauce
+            if (sauce.transform.localScale.x < maxSize)  // Make sauce grow
             {
                 sauce.transform.localScale += Vector3.one * growSpeed * Time.deltaTime;
             }
