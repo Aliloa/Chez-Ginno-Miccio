@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21168babb18a2f2468411d5af7e93431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pepperoni: {fileID: 0}
-  maxPepperonis: 70
+  ingredient: {fileID: 0}
+  maxIngredients: 5
 --- !u!65 &8317825534276297769
 BoxCollider:
   m_ObjectHideFlags: 0

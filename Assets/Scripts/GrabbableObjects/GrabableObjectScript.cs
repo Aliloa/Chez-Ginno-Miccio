@@ -38,6 +38,10 @@ public class GrabableObjectScript : MonoBehaviour
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidbody.useGravity = false;
         objectRigidbody.isKinematic = false;
+
+        // Reset rotation to (0, 0, 0)
+        this.transform.rotation = Quaternion.identity;
+
         //Modify the rigid body of all the children (of the dough) so that I can move the ingredients with it
         foreach (Transform child in this.transform)
         {
