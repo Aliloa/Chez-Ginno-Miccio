@@ -7,6 +7,8 @@ public class StartScreenScript : MonoBehaviour
     public void StartGame()
     {
         DayManagerScript.Instance.EndDay();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void QuitGame()

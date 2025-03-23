@@ -7,6 +7,9 @@ public class CookingScript : MonoBehaviour
     [SerializeField] private GameObject dough;
     [SerializeField] private Material cookedDoughMaterial;
     [SerializeField] private Material burntDoughMaterial;
+    [SerializeField] private AudioSource dingSound;
+    [SerializeField] private AudioSource timerSound;
+    [SerializeField] private AudioSource fireSound;
 
     private bool isCooking = false;
 
@@ -16,12 +19,16 @@ public class CookingScript : MonoBehaviour
         {
             isCooking = true;
             Debug.Log("Pizza en train de cuir");
+            timerSound.Play();
+            fireSound.Play();
             StartCoroutine(CookPizza(collision.gameObject));
         } 
         else if (collision.gameObject.CompareTag("CookedDough"))
         {
             isCooking = true;
             Debug.Log("Pizza en train de bruler");
+            timerSound.Play();
+            fireSound.Play();
             StartCoroutine(BurnPizza(collision.gameObject));
         }
     }
@@ -32,6 +39,8 @@ public class CookingScript : MonoBehaviour
         {
             isCooking = false;
             Debug.Log("Pizza sortie du four !");
+            timerSound.Stop();
+            fireSound.Stop();
         }
     }
     private IEnumerator CookPizza(GameObject doughInstance) //IEnumerator function that takes time to execute without blocking others
@@ -44,6 +53,7 @@ public class CookingScript : MonoBehaviour
 
         yield return new WaitForSeconds(3); // Wait 3 seconds
         Debug.Log("Pizza cuite !");
+        dingSound.Play();
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.FreezeRotation; //Remove duplication
@@ -65,6 +75,8 @@ public class CookingScript : MonoBehaviour
         if (isCooking)
         {
             Debug.Log("Pizza brûlée !");
+            timerSound.Stop();
+            fireSound.Stop();
             Renderer renderer = doughInstance.GetComponent<Renderer>();
             if (renderer != null)
             {
