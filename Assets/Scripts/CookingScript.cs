@@ -10,6 +10,7 @@ public class CookingScript : MonoBehaviour
     [SerializeField] private AudioSource dingSound;
     [SerializeField] private AudioSource timerSound;
     [SerializeField] private AudioSource fireSound;
+    [SerializeField] private ParticleSystem fireEffect;
 
     private bool isCooking = false;
 
@@ -21,6 +22,7 @@ public class CookingScript : MonoBehaviour
             Debug.Log("Pizza en train de cuir");
             timerSound.Play();
             fireSound.Play();
+            fireEffect.Play();
             StartCoroutine(CookPizza(collision.gameObject));
         } 
         else if (collision.gameObject.CompareTag("CookedDough"))
@@ -29,6 +31,7 @@ public class CookingScript : MonoBehaviour
             Debug.Log("Pizza en train de bruler");
             timerSound.Play();
             fireSound.Play();
+            fireEffect.Play();
             StartCoroutine(BurnPizza(collision.gameObject));
         }
     }
@@ -41,6 +44,7 @@ public class CookingScript : MonoBehaviour
             Debug.Log("Pizza sortie du four !");
             timerSound.Stop();
             fireSound.Stop();
+            fireEffect.Stop();
         }
     }
     private IEnumerator CookPizza(GameObject doughInstance) //IEnumerator function that takes time to execute without blocking others
@@ -51,7 +55,7 @@ public class CookingScript : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezePosition;
         }
 
-        yield return new WaitForSeconds(3); // Wait 3 seconds
+        yield return new WaitForSeconds(7); // Wait 7 seconds
         Debug.Log("Pizza cuite !");
         dingSound.Play();
         if (rb != null)
@@ -70,7 +74,7 @@ public class CookingScript : MonoBehaviour
 
     private IEnumerator BurnPizza(GameObject doughInstance)
     {
-        yield return new WaitForSeconds(5); // Wait 5 seconds
+        yield return new WaitForSeconds(10); // Wait 10 seconds
 
         if (isCooking)
         {
