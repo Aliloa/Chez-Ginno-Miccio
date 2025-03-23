@@ -9,8 +9,6 @@
 
 -Poubelle
 
--Ecran START
-
 -Persos individuels
 
 -Ajouter des boissons et des desserts (tt à la fin)
@@ -19,12 +17,11 @@
 
 -Améliorer les physiques (collisions avec dough et les sauces, le fromages etc)
 
--Animation fromage rapé
-
--Animation sauce
-
 ----------------------------------------------------------------------------------FAIT----------------------------------------------------
 -Sur EndOfDayScreen ajouter un bouton pour passer au jour suivant (fait)
--Ajouter frommage (fait)
+-Ajouter fromage (fait)
 -Ajouter sauces (fait)
 -Pizza brulé (fait)
+-Ecran START (fait) (à améliorer)
+-Animation fromage rapé (fait)
+-Animation sauce (fait)

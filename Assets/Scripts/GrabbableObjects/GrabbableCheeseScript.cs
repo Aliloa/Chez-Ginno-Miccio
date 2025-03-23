@@ -6,6 +6,7 @@ public class GrabbableCheeseScript : GrabableObjectScript
 {
     public ParticleSystem cheeseParticles;
     private Animator animator;
+    [SerializeField] private AudioSource cheeseSound;
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class GrabbableCheeseScript : GrabableObjectScript
     private void PlayCheeseParticles()
     {
         cheeseParticles.Play();
+        cheeseSound.Play();
     }
 
     public override void Grab(Transform grabPoint)
@@ -28,5 +30,6 @@ public class GrabbableCheeseScript : GrabableObjectScript
         base.Drop();
         cheeseParticles.Stop();
         animator.SetBool("isGrabbing", false);
+        cheeseSound.Stop();
     }
 }

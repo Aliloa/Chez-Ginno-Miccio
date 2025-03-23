@@ -81,6 +81,7 @@ public class CookingScript : MonoBehaviour
             Debug.Log("Pizza brûlée !");
             timerSound.Stop();
             fireSound.Stop();
+            fireEffect.Stop();
             Renderer renderer = doughInstance.GetComponent<Renderer>();
             if (renderer != null)
             {
