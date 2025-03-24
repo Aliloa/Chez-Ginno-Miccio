@@ -78,17 +78,17 @@ public class InteractionScript : MonoBehaviour
                 if (!client.hasOrder)
                 {
                     // The customer has not yet ordered
-                    client.CreateOrder();
+                    client.StartOrder();
                 }
                 else if (grabableObject != null && grabableObject.CompareTag("CookedDough"))
                 {
                     // Check if you have a "CookedDough" object in your hands
-                    client.CheckOrder(grabableObject.gameObject);
+                    client.RespondToOrder(grabableObject.gameObject);
                 }
                 else
                 {
                     // The customer repeats his order
-                    client.CreateOrder();
+                    client.StartOrder();
                 }
             }
         }

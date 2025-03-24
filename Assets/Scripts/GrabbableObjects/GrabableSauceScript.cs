@@ -5,6 +5,7 @@ public class GrabableSauceScript : GrabableObjectScript
 {
     [SerializeField] private ParticleSystem sauceParticles;
     private Animator animator;
+    [SerializeField] private AudioSource sauceSound;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -21,6 +22,7 @@ public class GrabableSauceScript : GrabableObjectScript
         if (sauceParticles != null)
         {
             sauceParticles.Play();  // Joue les particules
+            sauceSound.Play();
         }
     }
 
@@ -29,5 +31,6 @@ public class GrabableSauceScript : GrabableObjectScript
         base.Drop(); // Call the parent class method to drop the object
         animator.SetBool("isGrabbing", false);
         sauceParticles.Stop();
+        sauceSound.Stop();
     }
 }
