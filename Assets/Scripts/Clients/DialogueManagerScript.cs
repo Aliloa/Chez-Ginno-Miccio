@@ -9,6 +9,7 @@ public class DialogueManagerScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogue;
     [SerializeField] private string[] lines;
     [SerializeField] private float textSpeed;
+    [SerializeField] private AudioSource speakSound;
 
     private int index;
 
@@ -30,6 +31,7 @@ public class DialogueManagerScript : MonoBehaviour
         gameObject.SetActive(true);
         index = 0;
         StartCoroutine(TypeLine());
+        speakSound.Play();
     }
 
     IEnumerator TypeLine()
