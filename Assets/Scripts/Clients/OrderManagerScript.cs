@@ -5,29 +5,37 @@ using UnityEngine;
 public class OrderManagerScript : MonoBehaviour
 {
     public string order;
-    List<string> orderIngredients = new List<string>();
+    // List of all the ingredients to drag and drop in the inspector
+    [SerializeField] private List<GameObject> possibleIngredients; 
+
+    // List of ingredients in the order
+    private List<GameObject> orderIngredients = new List<GameObject>();
     public string CreateOrder()
     {
         // Clear previous order
         orderIngredients.Clear();
 
-        // Generate random order
-        string[] possibleIngredients = { "Mushroom", "Pepperoni" };
+        List<string> orderIngredientNames = new List<string>();
+        foreach (var ingredient in possibleIngredients)
+        {
+            Debug.Log("Possible ingredient: " + ingredient.name);
+        }
+        // Randomly choose whether the pizza has 1 or 2 ingredients
+        int numberOfIngredients = Random.Range(1, 3);
 
-            // Randomly choose whether the pizza has 1 or 2 ingredients
-            int numberOfIngredients = Random.Range(1, 3);
-
-            while (orderIngredients.Count < numberOfIngredients)
+        while (orderIngredients.Count < numberOfIngredients)
             {
-                string ingredient = possibleIngredients[Random.Range(0, possibleIngredients.Length)];
+            GameObject ingredient = possibleIngredients[Random.Range(0, possibleIngredients.Count)];
 
-                // Making sure to not select the same ingredient twice
-                if (!orderIngredients.Contains(ingredient))
+            // Making sure to not select the same ingredient twice
+            if (!orderIngredients.Contains(ingredient))
                 {
                     orderIngredients.Add(ingredient);
-                }
+                orderIngredientNames.Add(ingredient.name);
+                Debug.Log("Added ingredient: " + ingredient.name);
             }
-            order = string.Join(" and ", orderIngredients);
+            }
+            order = string.Join(" and ", orderIngredientNames);
             return order;
     }
 
@@ -46,9 +54,9 @@ public class OrderManagerScript : MonoBehaviour
         }
 
         // Check if all the ingredients are present
-        foreach (string ingredient in orderIngredients)
+        foreach (GameObject ingredient in orderIngredients)
         {
-            if (!ingredientsOnPizza.Contains(ingredient))
+            if (!ingredientsOnPizza.Contains(ingredient.tag))
             {
                 return false; // Ingredient missing
             }

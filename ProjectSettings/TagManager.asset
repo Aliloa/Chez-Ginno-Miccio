@@ -13,6 +13,7 @@ TagManager:
   - Bottle
   - Cheese
   - BurntDough
+  - Olive
   layers:
   - Default
   - TransparentFX

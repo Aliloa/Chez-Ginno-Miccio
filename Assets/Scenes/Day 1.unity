@@ -6615,6 +6615,16 @@ PrefabInstance:
       propertyPath: clientSpawner
       value: 
       objectReference: {fileID: 201457279}
+    - target: {fileID: 8109363308953212047, guid: cb4349873d63a8646ad5e62eba531e5f,
+        type: 3}
+      propertyPath: introductionDialogues.Array.data[0]
+      value: Ah, what a beatiful day!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109363308953212047, guid: cb4349873d63a8646ad5e62eba531e5f,
+        type: 3}
+      propertyPath: introductionDialogues.Array.data[1]
+      value: I hope you got fresh pizzas
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8050,6 +8060,16 @@ PrefabInstance:
       propertyPath: clientSpawner
       value: 
       objectReference: {fileID: 201457279}
+    - target: {fileID: 8109363308953212047, guid: cb4349873d63a8646ad5e62eba531e5f,
+        type: 3}
+      propertyPath: introductionDialogues.Array.data[0]
+      value: I hope you got fresh pizzas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109363308953212047, guid: cb4349873d63a8646ad5e62eba531e5f,
+        type: 3}
+      propertyPath: introductionDialogues.Array.data[1]
+      value: I hope you got fresh pizzas
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

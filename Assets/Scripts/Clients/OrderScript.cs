@@ -13,6 +13,13 @@ public class OrderScript : MonoBehaviour
     [SerializeField] private GameObject clientSpawner; //Object with the script clientSpawner
     private OrderManagerScript orderManager;
 
+    [Header("Customizable dialogs")]
+    [TextArea] public List<string> introductionDialogues = new List<string> { "Ah, what a beatiful day!", "I hope you got fresh pizzas" };
+    [TextArea] public string orderText = "Can I get a uhhhh {0} pizza";
+    [TextArea] public string repeatOrderText = "I said I want a {0} pizza";
+    [TextArea] public string goodOrderText = "Thank you so much!";
+    [TextArea] public string badOrderText = "This is not what I ordered!";
+
     void Start()
     {
         // Récupérer OrderManagerScript sur le même GameObject
@@ -28,15 +35,25 @@ public class OrderScript : MonoBehaviour
 
             orderManager.order = orderManager.CreateOrder(); //Generate the order
 
-            string[] commande = { "Can I get a uhhhh " + orderManager.order + " pizza" };
-            dialogue.GetComponent<DialogueManagerScript>().StartDialogue(commande);
-            return;
+            // Mix introduction dialogues and the order
+            List<string> fullDialogue = new List<string>(introductionDialogues);
+            fullDialogue.Add(string.Format(orderText, orderManager.order));
+
+            dialogue.GetComponent<DialogueManagerScript>().StartDialogue(fullDialogue.ToArray());
+
+
+            //string[] commande = { "Can I get a uhhhh " + orderManager.order + " pizza" };
+            //dialogue.GetComponent<DialogueManagerScript>().StartDialogue(commande);
+            //return;
         }
         else
         {
-            string[] repetCommande = { "I said I want a " + orderManager.order + " pizza" };
+            string[] repetCommande = { string.Format(repeatOrderText, orderManager.order) };
             dialogue.GetComponent<DialogueManagerScript>().StartDialogue(repetCommande);
-            return;
+
+            //string[] repetCommande = { "I said I want a " + orderManager.order + " pizza" };
+            //dialogue.GetComponent<DialogueManagerScript>().StartDialogue(repetCommande);
+            //return;
         }
     }
     public void RespondToOrder(GameObject pizza)
@@ -45,17 +62,16 @@ public class OrderScript : MonoBehaviour
 
         if (orderIsCorrect)
         {
-            string[] bonneCommande = { "Thank you so much!" };
+            string[] bonneCommande = { goodOrderText };
             dialogue.GetComponent<DialogueManagerScript>().StartDialogue(bonneCommande);
             hasOrder = false; // Restart order
+            StartCoroutine(WaitForDialogueToComplete());// Wait util the dialogue is done to contunue
         }
         else
         {
-            string[] mauvaiseCommande = { "This is not what I ordered!" };
+            string[] mauvaiseCommande = { badOrderText };
             dialogue.GetComponent<DialogueManagerScript>().StartDialogue(mauvaiseCommande);
         }
-        // Wait util the dialogue is done to contunue
-        StartCoroutine(WaitForDialogueToComplete());
     }
 
     IEnumerator WaitForDialogueToComplete()
