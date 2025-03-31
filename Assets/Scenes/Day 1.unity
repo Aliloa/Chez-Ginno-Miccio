@@ -571,10 +571,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4243736787205278944, guid: a05a2ca545669584297c9fd393aec872,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4546644449354009588, guid: a05a2ca545669584297c9fd393aec872,
         type: 3}
       propertyPath: m_Name
       value: Ketchup (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546644449354009588, guid: a05a2ca545669584297c9fd393aec872,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4546644449354009588, guid: a05a2ca545669584297c9fd393aec872,
         type: 3}
@@ -1011,7 +1021,7 @@ GameObject:
   - component: {fileID: 300233615}
   - component: {fileID: 300233617}
   - component: {fileID: 300233616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sauce Particles
   m_TagString: TomatoSauce
   m_Icon: {fileID: 0}
@@ -6617,13 +6627,23 @@ PrefabInstance:
       objectReference: {fileID: 201457279}
     - target: {fileID: 8109363308953212047, guid: cb4349873d63a8646ad5e62eba531e5f,
         type: 3}
+      propertyPath: introductionDialogues.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109363308953212047, guid: cb4349873d63a8646ad5e62eba531e5f,
+        type: 3}
       propertyPath: introductionDialogues.Array.data[0]
-      value: Ah, what a beatiful day!
+      value: Oh, I've never seen this place before! Did you just open?
       objectReference: {fileID: 0}
     - target: {fileID: 8109363308953212047, guid: cb4349873d63a8646ad5e62eba531e5f,
         type: 3}
       propertyPath: introductionDialogues.Array.data[1]
-      value: I hope you got fresh pizzas
+      value: "That\u2019s amazing! A new pizzeria in town\u2014I\u2019m so happy!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109363308953212047, guid: cb4349873d63a8646ad5e62eba531e5f,
+        type: 3}
+      propertyPath: introductionDialogues.Array.data[2]
+      value: I hope your pizzas are as good as they smell. Can I order one?
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7867,6 +7887,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1781612666}
     m_Modifications:
+    - target: {fileID: 68382566538215642, guid: f647acc85fb715a4ebee677d6aa8a70f,
+        type: 3}
+      propertyPath: m_text
+      value: Press F to talk
+      objectReference: {fileID: 0}
     - target: {fileID: 3283337829161247477, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
       propertyPath: m_Name
@@ -7875,7 +7900,7 @@ PrefabInstance:
     - target: {fileID: 3283337829161247477, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
@@ -7890,22 +7915,22 @@ PrefabInstance:
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
@@ -7955,12 +7980,12 @@ PrefabInstance:
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 153.7
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 50.36
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: f647acc85fb715a4ebee677d6aa8a70f,
         type: 3}
@@ -8778,18 +8803,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4904590346258732976}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1705285787 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4167681874306869645, guid: 09adabfc696bf0349ace934f4dc0dd83,
-    type: 3}
-  m_PrefabInstance: {fileID: 4904590346258732976}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1710255011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10045,6 +10058,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndDayScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6250631645498327490, guid: f3c8b58e5815942449bc389984eaca20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8353012896586991894, guid: f3c8b58e5815942449bc389984eaca20,
         type: 3}
       propertyPath: player
@@ -10427,6 +10445,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1781612666}
     m_Modifications:
+    - target: {fileID: 68382566538215642, guid: 00d34615da05e9a469d676d784e9ec9c,
+        type: 3}
+      propertyPath: m_text
+      value: 'Press E to grab/drop
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 3283337829161247477, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_Name
@@ -10435,7 +10460,7 @@ PrefabInstance:
     - target: {fileID: 3283337829161247477, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
@@ -10450,22 +10475,22 @@ PrefabInstance:
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
@@ -10475,7 +10500,7 @@ PrefabInstance:
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
@@ -10515,12 +10540,12 @@ PrefabInstance:
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 201.79999
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 48.99
       objectReference: {fileID: 0}
     - target: {fileID: 3929570094218561391, guid: 00d34615da05e9a469d676d784e9ec9c,
         type: 3}
@@ -10783,8 +10808,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
+      propertyPath: Gravity
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: JumpHeight
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: FallTimeout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: JumpTimeout
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
@@ -10933,7 +10978,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029863415}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6907c9aeabdf14a8a0752080e01863, type: 3}
   m_Name: 
@@ -10942,7 +10987,9 @@ MonoBehaviour:
   pickupLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  dot: {fileID: 1705285787}
+  clientLayer:
+    serializedVersion: 2
+    m_Bits: 128
   pressE: {fileID: 7763736090583859655}
   pressF: {fileID: 1632280740}
 --- !u!1001 &5575261460968396137
@@ -10953,6 +11000,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3872480512463917105, guid: 2385d7ed63ade5c40882a89e44627889,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060129300271799431, guid: 2385d7ed63ade5c40882a89e44627889,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6298815936419638561, guid: 2385d7ed63ade5c40882a89e44627889,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11008,10 +11065,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cheese
       objectReference: {fileID: 0}
+    - target: {fileID: 6846475980827498538, guid: 2385d7ed63ade5c40882a89e44627889,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7360521331529473617, guid: 2385d7ed63ade5c40882a89e44627889,
         type: 3}
       propertyPath: m_Volume
       value: 0.315
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555369998756468988, guid: 2385d7ed63ade5c40882a89e44627889,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

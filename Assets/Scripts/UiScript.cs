@@ -11,7 +11,7 @@ public class UiScript : MonoBehaviour
 
     [SerializeField] private Transform playerCamera;
     [SerializeField] private LayerMask pickupLayerMask;
-    [SerializeField] private Image dot;
+    [SerializeField] private LayerMask clientLayer;
     [SerializeField] private TextMeshProUGUI pressE;
     [SerializeField] private TextMeshProUGUI pressF;
 
@@ -24,6 +24,7 @@ public class UiScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If the player did all the interactions disable the script
         CheckForClient();
         CheckForGrabbableObject();
     }
@@ -32,30 +33,26 @@ public class UiScript : MonoBehaviour
     {
         RaycastHit raycastHit;
         float interactDistance = 2f;
-        LayerMask ingredientLayer = LayerMask.GetMask("Ingredient");
 
         // Cast a ray from the camera's position in the direction the camera is facing
-        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, ingredientLayer))
+        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, pickupLayerMask))
         {
             // Check if the object hit has a GrabbableObjectScript component
             if (raycastHit.transform.TryGetComponent(out grabbableObject))
             {
                 // Show the "Press E" UI element if the player is looking at a grabbable object
                 pressE.enabled = true;
-                dot.enabled = false;
             }
             else
             {
                 // Hide the "Press E" UI element if the player is not looking at a grabbable object
                 pressE.enabled = false;
-                dot.enabled = true;
             }
         }
         else
         {
             // Hide the "Press E" UI element if nothing is hit by the raycast
             pressE.enabled = false;
-            dot.enabled = true;
         }
     }
 
@@ -63,7 +60,6 @@ public class UiScript : MonoBehaviour
     {
         RaycastHit raycastHit;
         float interactDistance = 3f;
-        LayerMask clientLayer = LayerMask.GetMask("Client");
 
         // Cast a ray from the camera's position in the direction the camera is facing
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, clientLayer))
@@ -73,20 +69,17 @@ public class UiScript : MonoBehaviour
             {
                 // Show the "Press E" UI element if the player is looking at a grabbable object
                 pressF.enabled = true;
-                dot.enabled = false;
             }
             else
             {
                 // Hide the "Press E" UI element if the player is not looking at a grabbable object
                 pressF.enabled = false;
-                dot.enabled = true;
             }
         }
         else
         {
             // Hide the "Press E" UI element if nothing is hit by the raycast
             pressF.enabled = false;
-            dot.enabled = true;
         }
     }
 }

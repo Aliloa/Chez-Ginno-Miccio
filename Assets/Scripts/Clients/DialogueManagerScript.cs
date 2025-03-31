@@ -31,11 +31,11 @@ public class DialogueManagerScript : MonoBehaviour
         gameObject.SetActive(true);
         index = 0;
         StartCoroutine(TypeLine());
-        speakSound.Play();
     }
 
     IEnumerator TypeLine()
     {
+        speakSound.Play();
         //Animate the text
         foreach (char c in lines[index].ToCharArray())
         {
