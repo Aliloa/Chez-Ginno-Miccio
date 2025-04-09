@@ -3,7 +3,22 @@ guid: 694fa1de43e09a14187db92e4a16ba06
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bois.002
+    second: {fileID: 2100000, guid: 5101d0f3f0b6aa04abc492ec5c99a148, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gris facon.002
+    second: {fileID: 2100000, guid: 44e47aab3c50ffd4fb28e2718b926dd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pierre.002
+    second: {fileID: 2100000, guid: 3ed9c8abce2c54b47848b9a8e230db82, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
