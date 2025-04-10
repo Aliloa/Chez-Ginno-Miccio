@@ -15,6 +15,7 @@ public class InteractionScript : MonoBehaviour
     private DialogueManagerScript dialogueManager;
     private DoughSpawnerScript doughSpawner;
     private GrabableSauceScript grabableSauce;
+    private RadioScript radioScript;
 
     private PlayerInput playerInput;
     private InputAction grabAction;
@@ -30,6 +31,13 @@ public class InteractionScript : MonoBehaviour
         // Catching and dropping objects
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out raycastHit, interactDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
             {
+            // 1. Try Radio
+            if (raycastHit.transform.TryGetComponent(out radioScript))
+            {
+                radioScript.ToggleRadio();
+                return;
+            }
+            // 2. Try Grab
             if (grabableObject == null)
                 {
                     if (raycastHit.transform.TryGetComponent(out grabableObject))
